@@ -29,7 +29,7 @@ CREATE TABLE vacancy (
 );
 
 CREATE TABLE vacancy_body_specialization (
-    vacancy_body_specialization_id integer NOT NULL,
+    vacancy_body_specialization_id serial PRIMARY KEY,
     vacancy_body_id integer DEFAULT 0 NOT NULL,
     specialization_id integer DEFAULT 0 NOT NULL
 );
@@ -62,8 +62,8 @@ CREATE TABLE cv (
 );
 
 CREATE TABLE cv_specialization (
-    cv_specialization_id integer NOT NULL,
-    cv_id integer REFERENCES cv(cv_id),
+    cv_specialization_id serial PRIMARY KEY,
+    cv_id integer DEFAULT 0 NOT NULL,
     specialization_id integer DEFAULT 0 NOT NULL
 );
 
@@ -73,8 +73,10 @@ CREATE TABLE specialization (
 );
 
 CREATE TABLE response (
+    response_id serial PRIMARY KEY,
     -- vacancy_id integer REFERENCES vacancy(vacancy_id),
     vacancy_id integer,
     -- cv_id integer REFERENCES cv(cv_id)
-    cv_id integer
+    cv_id integer,
+    response_time timestamp NOT NULL
 );
